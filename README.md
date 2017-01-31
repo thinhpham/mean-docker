@@ -12,7 +12,7 @@ Docker version 1.12.1, build 23cf638
 ```
 
 - npm
-```bash
+```js
 $ npm -v
 3.10.3
 ```
