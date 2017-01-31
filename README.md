@@ -5,13 +5,13 @@
 ## Prerequisites
 Make sure the following software are installed. As of 2017-01-01, these are the versions currently running on my machine:
 
-* Docker
+- Docker
 ```bash
 $ docker -v
 Docker version 1.12.1, build 23cf638
 ```
 
-* npm
+- npm
 ```bash
 $ npm -v
 3.10.3
