@@ -1,0 +1,17 @@
+<div id="search-component">
+  <h2>Search Database For Heroes</h2>
+  <div class="row">
+    <div class="col-sm-4">
+      <input #searchBox id="search-box" (keyup)="search(searchBox.value)" class="form-control input-lg" placeholder="Enter any name to search" />
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="list-group">
+        <div *ngFor="let hero of heroes | async" (click)="gotoDetail(hero)" class="search-result">
+          <a class="list-group-item list-group-item-success">{{hero.name}}</a>
+      </div>
+    </div>
+  </div>
+</div>

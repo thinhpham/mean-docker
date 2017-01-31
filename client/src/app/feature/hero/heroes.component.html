@@ -1,0 +1,47 @@
+<!-- My heroes list and selected hero -->
+<h2>My Heroes</h2>
+<div class="row">
+  <!-- Heroes table -->
+  <div class="col-md-6">
+    <div class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hero of heroes" (click)="onSelect(hero)" style="cursor: hand; cursor: pointer" [class.active]="hero === selectedHero">
+          <td>{{hero._id}}</td>
+          <td>{{hero.name}}</td>
+          <td>{{hero.age}}</td>
+          <td><button class="btn btn-danger" (click)="delete(hero); $event.stopPropagation()">Delete</button></td>
+        </tr>
+      </tbody>
+    </div>
+  </div>
+  <!-- Selected Hero -->
+  <div *ngIf="selectedHero" class="col-md-6">
+    <h3>{{selectedHero.name}} is my hero</h3>
+    <button class="btn btn-primary" (click)="gotoDetail()">View Details</button>
+  </div>
+</div>
+<!-- Add new hero -->
+<h2>New Hero</h2>
+<div class="row">
+  <div class="col-sm-4">
+    <div>
+      <div class="form-group">
+        <label for="inputName">Name</label>
+        <input class="form-control" id="inputName" placeholder="Name" #heroName>
+      </div>
+      <div class="form-group">
+        <label for="inputAge">Age</label>
+        <input class="form-control" id="inputAge" placeholder="Age" #heroAge>
+      </div>
+      <button (click)="add(heroName.value, heroAge.value); heroName.value=''; heroAge.value='';" class="btn btn-primary">Add New Hero</button>
+    </div>
+  </div>
+</div>

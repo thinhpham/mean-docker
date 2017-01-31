@@ -1,0 +1,8 @@
+<div class="jumbotron">
+  <h1>Top Heroes</h1>
+  <p>List of four top heroes of the world...</p>
+  <a *ngFor="let hero of heroes" [routerLink]="['/detail', hero._id]" style="margin-right: 10px;" class="btn btn-lg btn-primary">{{hero.name}}</a>
+</div>
+<hero-search></hero-search>
+<br><br>
+<wikipedia-search></wikipedia-search>
