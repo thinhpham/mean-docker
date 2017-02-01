@@ -1,0 +1,8 @@
+{
+    "firstName": "Admin", 
+    "lastName": "User",
+    "email": "admin",
+    "password": "demo",
+    "isPasswordHashed": false,
+    "isAdmin": true
+}
