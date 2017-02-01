@@ -22,7 +22,8 @@ npm start
 
 ## Using Docker
 Once all development are done, you can use Docker Compose to deploy services into containers. Make sure you install the Docker software at the link below.
-- [Docker](https://www.docker.com)
+- [Docker Engine](https://docs.docker.com/engine/installation)
+- [Docker Compose](https://docs.docker.com/compose/install)
 
 ### Usages
 - Builds, creates, starts all containers
