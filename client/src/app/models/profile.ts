@@ -1,13 +1,13 @@
 export class Profile {
-    _id: String;
-    phone: String;
-    address: String;
-    city: String;
-    state: String;
-    postalCode: String;
-    country: String;
-    createdBy: String;
+    _id: string;
+    phone: string;
+    address: string;
+    city: string;
+    state: string;
+    postalCode: string;
+    country: string;
+    createdBy: string;
     createdOn: Date;
-    updatedBy: String;
+    updatedBy: string;
     updatedOn: Date;
 }

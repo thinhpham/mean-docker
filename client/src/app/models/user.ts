@@ -1,14 +1,14 @@
 export class User {
-    _id: String;
-    firstName: String;
-    lastName: String;
-    email: String;
-    password: String;
-    isPasswordHashed: Boolean;
-    isAdmin: Boolean;
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    isPasswordHashed: boolean;
+    isAdmin: boolean;
     lastLogin: Date;
-    createdBy: String;
+    createdBy: string;
     createdOn: Date;
-    updatedBy: String;
+    updatedBy: string;
     updatedOn: Date;
 }
