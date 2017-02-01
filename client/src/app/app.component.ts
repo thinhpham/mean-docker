@@ -18,6 +18,6 @@ export class AppComponent {
   }
 
   isAuthenticated(): Boolean {
-    return this.authenticationService.token !== null;
+    return (typeof this.authenticationService.token != 'undefined' && this.authenticationService.token !== null);
   }
 }
