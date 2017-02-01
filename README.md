@@ -1,6 +1,6 @@
 # MEAN Starter Kit using Docker Compose
 
-> This project is based projects linked to in the [References](#references) section but simplified to fit my purpose of quickly starting up a project and customizing it for a general purpose website that supports user registration and authentication. It uses Angular 2 with webpack for the client side, Node.js with Express for the server side, and MongoDB for data storage. JSON Web Tokens (JWT) is used for authentication.
+> This project is based on projects linked to in the [References](#references) section but simplified to fit my purpose of quickly starting up a project and customizing it for a general purpose website that supports user registration and authentication. It uses Angular 2 with webpack for the client side, Node.js with Express for the server side, and MongoDB for data storage. JSON Web Tokens (JWT) is used for authentication.
 
 ## Development without using Docker
 To do local development without using Docker, make sure the following software are installed.
