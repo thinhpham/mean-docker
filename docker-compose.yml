@@ -2,13 +2,13 @@ version: '2' # specify docker-compose version
 
 # Define the services/containers to be run
 services:
-  mean-client: # name of the client service
+  client: # name of the client service
     build: client       # specify the directory of the Dockerfile
     image: client:dev   # specify image name and tag
     ports:
       - "4200:4200" # specify port forewarding
 
-  mean-server: #name of the server service
+  server: #name of the server service
     build: server       # specify the directory of the Dockerfile
     image: server:dev   # specify image name and tag
     ports:
