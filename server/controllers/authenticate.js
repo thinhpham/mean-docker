@@ -22,18 +22,19 @@ function hashPassword(plainText) {
 router.post('/', function (req, res) {
     User.findOne({ email: req.body.email }, (error, user) => {
         if (error) res.status(500).send(error);
+        var token = null;
 
         if (user) {
             if (req.body.password) {
                 if (user.isPasswordHashed) {
                     if (bcrypt.compareSync(req.body.password, user.password)) {
-                        var token = createToken(user);
+                        token = createToken(user);
                         res.json({ success: true, message: 'Success', token: token });
                     } else {
                         res.json({ success: false, message: 'Authentication failed. User not found or incorrect password.' });
                     }
                 } else if (req.body.password === user.password) {
-                    var token = createToken(user);
+                    token = createToken(user);
                     res.json({ success: true, message: 'Success', token: token });
                 } else {
                     res.json({ success: false, message: 'Authentication failed. User not found or incorrect password.' });

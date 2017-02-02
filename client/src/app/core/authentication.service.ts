@@ -34,7 +34,7 @@ export class AuthenticationService {
                     let token = respJson.token;
                     if (token) {
                         this.token = token;
-                        localStorage.setItem('currentUser', JSON.stringify({ email: email, token: token }));
+                        localStorage.setItem('currentUser', JSON.stringify({ token: token }));
                         return true;
                     }
                 }
@@ -46,11 +46,5 @@ export class AuthenticationService {
     logout(): void {
         this.token = null;
         localStorage.removeItem('currentUser');
-    }
-
-    getCurrentUser(): User {
-        if (this.token) {
-            return new User();
-        }
     }
 }

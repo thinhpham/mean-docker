@@ -1,17 +1,21 @@
 <h3>Security</h3>
-<p>Hello from security component</p>
-<!--
-    <div class="form-group">
-        <label for="inputId">Id</label>
-        <input class="form-control" id="inputId" value="{{user._id}}" placeholder="Id" disabled>
-    </div>
-    <div class="form-group">
-        <label for="inputEmail">Email</label>
-        <input class="form-control" [(ngModel)]="user.email" id="inputName" placeholder="Email">
-    </div>
-    <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input class="form-control" [(ngModel)]="user.password" id="inputPassword" placeholder="Password">
-    </div>
-    <button (click)="save()" class="btn btn-primary">Save</button>
-    -->
+<div class="form-group">
+    <label for="firstName">First Name</label>
+    <input class="form-control" type="text" [(ngModel)]="user.firstName" id="firstName" placeholder="First Name">
+</div>
+<div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input class="form-control" type="text" [(ngModel)]="user.lastName" id="lastName" placeholder="Last Name">
+</div>
+<div class="form-group">
+    <label for="email">Email</label>
+    <input class="form-control" type="text" [(ngModel)]="user.email" id="email" placeholder="Email">
+</div>
+<div class="form-group">
+    <label for="password">Password</label>
+    <input class="form-control" type="password" [(ngModel)]="user.password" id="password" placeholder="Password">
+</div>
+<div class="checkbox">
+    <label><input type="checkbox" [(ngModel)]="user.isAdmin" id="isAdmin">Is Administrator</label>
+</div>
+<button (click)="save()" class="btn btn-primary">Save</button>
