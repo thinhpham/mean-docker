@@ -7,7 +7,7 @@ import { HeroSearchService } from './hero-search.service';
 import { Hero } from '../../models/hero';
 
 @Component({
-  selector: 'hero-search',
+  selector: 'toh-hero-search',
   templateUrl: './hero-search.component.html',
   styleUrls: ['./hero-search.component.css'],
   providers: [HeroSearchService]

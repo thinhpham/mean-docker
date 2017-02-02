@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'wikipedia-search',
+    selector: 'toh-wikipedia-search',
     styleUrls: ['./wikipedia-search.component.css'],
     templateUrl: './wikipedia-search.component.html'
 })

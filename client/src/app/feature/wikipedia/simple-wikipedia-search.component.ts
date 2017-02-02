@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { WikipediaSearchService } from './wikipedia-search.service';
 
 @Component({
-  selector: 'simple-wikipedia-search',
+  selector: 'toh-simple-wikipedia-search',
   template: `
     <div>
       <h3>Simple Search</h3>

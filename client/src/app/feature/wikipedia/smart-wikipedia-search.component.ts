@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { WikipediaSearchService } from './wikipedia-search.service';
 
 @Component({
-  selector: 'smart-wikipedia-search',
+  selector: 'toh-smart-wikipedia-search',
   template: `
     <div>
       <h3>Smart Search</h3>
