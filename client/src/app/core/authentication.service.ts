@@ -1,8 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs';
-
-import 'rxjs/add/operator/map'
 
 import { IAppConfig } from '../iapp.config';
 import { APP_CONFIG } from '../app.config';
@@ -23,23 +20,16 @@ export class AuthenticationService {
         }
     }
 
-    login(email: string, password: string): Observable<boolean> {
+    login(email: string, password: string): Promise<boolean> {
         const url = `${this.serviceUrl}/authenticate`;
         const json = JSON.stringify({ email: email, password: password });
 
         return this.http.post(url, JSON.stringify({ email: email, password: password }), { headers: this.headers })
-            .map((response: Response) => {
-                let respJson = response.json();
-                if (respJson) {
-                    let token = respJson.token;
-                    if (token) {
-                        this.token = token;
-                        localStorage.setItem('currentUser', JSON.stringify({ token: token }));
-                        return true;
-                    }
-                }
-
-                return false;
+            .toPromise()
+            .then(response => {
+                this.token = response.json().token;
+                localStorage.setItem('currentUser', JSON.stringify({ token: this.token }));
+                return true;
             });
     }
 
