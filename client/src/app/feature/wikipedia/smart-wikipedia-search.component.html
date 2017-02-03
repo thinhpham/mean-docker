@@ -1,0 +1,7 @@
+<div>
+    <h3>Smart Search</h3>
+    <input type="text" [formControl]="term" placeholder="Enter any term to search" class="form-control input-lg">
+    <ul>
+        <li *ngFor="let item of items | async">{{item}}</li>
+    </ul>
+</div>

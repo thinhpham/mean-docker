@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { routing } from './settings.routing';
 
@@ -13,7 +13,7 @@ import { ProfileService } from './profile.service';
 import { UserService } from './user.service';
 
 @NgModule({
-    imports: [ CommonModule, FormsModule, ReactiveFormsModule, routing],
+    imports: [ CommonModule, FormsModule, routing],
     declarations: [ SettingsComponent, NotificationComponent, ProfileComponent, SecurityComponent ],
     providers: [ ProfileService, UserService ]
 })

@@ -13,7 +13,8 @@
       <ul class="nav navbar-nav">
         <li *ngIf="isAuthenticated()" [routerLinkActive]="['active']"><a routerLink="/dashboard">Dashboard</a></li>
         <li *ngIf="isAuthenticated()" [routerLinkActive]="['active']"><a routerLink="/heroes">Heroes</a></li>
-        <li *ngIf="isAuthenticated()" [routerLinkActive]="['active']"><a routerLink="/lazy">Lazy</a></li>
+        <li [routerLinkActive]="['active']"><a routerLink="/wikipedia">Wikipedia</a></li>
+        <li *ngIf="isAuthenticated()" [routerLinkActive]="['active']"><a routerLink="/lazy">Lazy Load Module</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="isAuthenticated()" [routerLinkActive]="['active']" class="dropdown"><a routerLink="/settings">Settings</a></li>

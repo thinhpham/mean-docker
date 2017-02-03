@@ -13,22 +13,12 @@ export class UserService {
   private headers = new Headers({ 'Content-Type': 'application/json', 'X-Access-Token': this.authenticationService.token });
   private options = new RequestOptions({ headers: this.headers });
 
-  constructor( @Inject(APP_CONFIG) private config: IAppConfig, private http: Http, private authenticationService: AuthenticationService) {
-  }
+  constructor( @Inject(APP_CONFIG) private config: IAppConfig, private http: Http, private authenticationService: AuthenticationService) { }
 
-  getCurrentUser(): User {
+  getCurrentUser(): Promise<User> {
     if (this.authenticationService.token) {
-      var helper = new JwtHelper();
-      var decoded = helper.decodeToken(this.authenticationService.token);
-
-      var user = new User();
-      user._id = decoded._id;
-      user.firstName = decoded.firstName;
-      user.lastName = decoded.lastName;
-      user.email = decoded.email;
-      user.isAdmin = decoded.isAdmin;
-
-      return user;
+      var jwt = new JwtHelper();
+      return Promise.resolve(jwt.decodeToken(this.authenticationService.token) as User);
     }
   }
 
@@ -38,22 +28,17 @@ export class UserService {
     return this.http
       .get(url, this.options)
       .toPromise()
-      .then(response => {
-        let user = response.json() as User;
-        return user;
-      })
+      .then(response => response.json() as User)
       .catch(this.handleError);
   }
 
   update(user: User): Promise<User> {
     const url = `${this.serviceUrl}/${user._id}`;
+
     return this.http
       .get(url, this.options)
       .toPromise()
-      .then(response => {
-        let user = response.json() as User;
-        return user;
-      })
+      .then(response => response.json() as User)
       .catch(this.handleError);
   }
 

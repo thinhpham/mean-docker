@@ -1,8 +1,10 @@
 <h3>Notification</h3>
-<div class="checkbox">
-    <label><input type="checkbox" [(ngModel)]="user.receiveCommunication" id="receiveCommunication">I want to receive weekly email communication</label>
+<div *ngIf="user">
+    <div class="checkbox">
+        <label><input type="checkbox" [(ngModel)]="user.receiveCommunication" id="receiveCommunication">I want to receive weekly email communication</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" [(ngModel)]="user.receiveCommunicationFromPartner" id="receiveCommunicationFromPartner">I want to receive communication from partner companies</label>
+    </div>
+    <button (click)="save()" class="btn btn-primary">Save</button>
 </div>
-<div class="checkbox">
-    <label><input type="checkbox" [(ngModel)]="user.receiveCommunicationFromPartner" id="receiveCommunicationFromPartner">I want to receive communication from partner companies</label>
-</div>
-<button (click)="save()" class="btn btn-primary">Save</button>

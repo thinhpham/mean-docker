@@ -1,0 +1,7 @@
+<div>
+    <h3>Simple Search</h3>
+    <input #term type="text" (keyup)="search(term.value)" placeholder="Enter any term to search" class="form-control input-lg">
+    <ul>
+        <li *ngFor="let item of items">{{item}}</li>
+    </ul>
+</div>

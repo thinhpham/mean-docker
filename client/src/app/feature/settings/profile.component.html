@@ -1,22 +1,24 @@
 <h3>Profile</h3>
-<div class="form-group">
-    <label for="phone">Phone</label>
-    <input class="form-control" type="text" [(ngModel)]="user.phone" id="phone" placeholder="Phone Number">
+<div *ngIf="user">
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input class="form-control" type="text" [(ngModel)]="user.phone" id="phone" placeholder="Phone Number">
+    </div>
+    <div class="form-group">
+        <label for="address">Address</label>
+        <input class="form-control" type="text" [(ngModel)]="user.address" id="address" placeholder="Address">
+    </div>
+    <div class="form-group">
+        <label for="city">City</label>
+        <input class="form-control" type="text" [(ngModel)]="user.city" id="city" placeholder="City">
+    </div>
+    <div class="form-group">
+        <label for="state">State/Province</label>
+        <input class="form-control" type="text" [(ngModel)]="user.state" id="state" placeholder="State/Province">
+    </div>
+    <div class="form-group">
+        <label for="postalCode">Postal/Zip Code</label>
+        <input class="form-control" type="text" [(ngModel)]="user.postalCode" id="postalCode" placeholder="Postal/Zip Code">
+    </div>
+    <button (click)="save()" class="btn btn-primary">Save</button>
 </div>
-<div class="form-group">
-    <label for="address">Address</label>
-    <input class="form-control" type="text" [(ngModel)]="user.address" id="address" placeholder="Address">
-</div>
-<div class="form-group">
-    <label for="city">City</label>
-    <input class="form-control" type="text" [(ngModel)]="user.city" id="city" placeholder="City">
-</div>
-<div class="form-group">
-    <label for="state">State/Province</label>
-    <input class="form-control" type="text" [(ngModel)]="user.state" id="state" placeholder="State/Province">
-</div>
-<div class="form-group">
-    <label for="postalCode">Postal/Zip Code</label>
-    <input class="form-control" type="text" [(ngModel)]="user.postalCode" id="postalCode" placeholder="Postal/Zip Code">
-</div>
-<button (click)="save()" class="btn btn-primary">Save</button>

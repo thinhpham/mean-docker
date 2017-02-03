@@ -7,15 +7,8 @@ import { WikipediaSearchService } from './wikipedia-search.service';
 
 @Component({
   selector: 'toh-smart-wikipedia-search',
-  template: `
-    <div>
-      <h3>Smart Search</h3>
-      <input type="text" [formControl]="term" placeholder="Enter any term to search" class="form-control input-lg">
-      <ul>
-        <li *ngFor="let item of items | async">{{item}}</li>
-      </ul>
-    </div>
-  `
+  templateUrl: './smart-wikipedia-search.component.html',
+  styleUrls: ['./smart-wikipedia-search.component.css']
 })
 export class SmartWikipediaSearchComponent {
   items: Observable<Array<string>>;

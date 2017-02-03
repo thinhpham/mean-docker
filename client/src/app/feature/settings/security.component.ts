@@ -11,13 +11,13 @@ import { UserService } from './user.service';
   templateUrl: './security.component.html',
   styleUrls: ['./security.component.css']
 })
-export class SecurityComponent {
+export class SecurityComponent implements OnInit {
   user: User;
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.user = this.userService.getCurrentUser();
+    this.userService.getCurrentUser().then(user => this.user = user);
   }
 
   save(): void {

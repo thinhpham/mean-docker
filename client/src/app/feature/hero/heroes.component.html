@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let hero of heroes" (click)="onSelect(hero)" style="cursor: hand; cursor: pointer" [class.active]="hero === selectedHero">
+        <tr *ngFor="let hero of heroes" (click)="onSelect(hero)" style="cursor: pointer" [class.active]="hero === selectedHero">
           <td>{{hero._id}}</td>
           <td>{{hero.name}}</td>
           <td>{{hero.age}}</td>

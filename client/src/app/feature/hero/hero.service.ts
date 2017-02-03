@@ -32,10 +32,7 @@ export class HeroService {
     return this.http
       .get(url, this.options)
       .toPromise()
-      .then(response => {
-        let hero = response.json() as Hero;
-        return hero;
-      })
+      .then(response => response.json() as Hero)
       .catch(this.handleError);
   }
 

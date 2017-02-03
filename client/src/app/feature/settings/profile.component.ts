@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { User } from '../../models/user';
 import { UserService } from './user.service';
@@ -7,13 +7,13 @@ import { UserService } from './user.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent { 
+export class ProfileComponent implements OnInit { 
   user: User;
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.user = this.userService.getCurrentUser();
+    this.userService.getCurrentUser().then(user => this.user = user);
   }
 
   save(): void {
