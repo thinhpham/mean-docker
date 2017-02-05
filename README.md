@@ -18,7 +18,9 @@ To do local development without using Docker, make sure the following software a
 
 ### Usages
 - Make sure the MongoDB server is running and listening on localhost port 27017. If your server is running somewhere else or listening on other port, don't forget to update the 'database' value in the './mean-docker/server/config.js' file
-- Run the 'seed.sh' or 'seed.cmd' script depending on if you're using Mac/Linux or Windows machine to seed your MongoDB database with an 'Admin' user. The email is 'admin' and password is 'demo'. Use this to login to the 'client' site
+- Run the './seed.sh' or './seed.cmd' script depending on if you're using Mac/Linux or Windows machine to seed your MongoDB database with an 'Admin' and 'Demo' users. Use the info below to login to the 'client' site:
+    - User: admin@company.com, Password: admin
+    - User: demo@company.com, Password: demo
 - Open up two command-line interfaces and change to the "client" and "server" folders respectively then enter "npm start" to run both the client and server apps
 ```console
 cd ./mean-docker/client
