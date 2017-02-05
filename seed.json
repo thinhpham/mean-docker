@@ -1,8 +1,2 @@
-{
-    "firstName": "Admin", 
-    "lastName": "User",
-    "email": "admin",
-    "password": "demo",
-    "isPasswordHashed": false,
-    "isAdmin": true
-}
+{ "firstName": "Admin", "lastName": "User", "email": "admin@company.com", "password": "admin", "isPasswordHashed": false, "isAdmin": true }
+{ "firstName": "Demo", "lastName": "User", "email": "demo@company.com", "password": "demo", "isPasswordHashed": false, "isAdmin": false }

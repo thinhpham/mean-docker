@@ -1,1 +1,1 @@
-mongoimport --db mean-docker --collection users --drop --file ./seed.json
+mongoimport --db mean-docker --collection users --file ./seed.json
