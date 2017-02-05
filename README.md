@@ -4,7 +4,7 @@
 
 ## Features
 - Bootstrap 3
-- Angular 2 with Webpack 2.x
+- Angular 2 with Webpack 2.x using angular-cli
 - Eager and lazy routing as well as child routings
 - Authentication using JSON Web Tokens (JWT)
 - Multi tabs interface for user settings
@@ -64,3 +64,9 @@ docker-compose up -d --no-deps --build <service_name>
 - http://jasonwatmore.com/post/2016/04/05/angularjs-jwt-authentication-example-tutorial
 - https://github.com/AngularClass/angular2-webpack-starter
 - https://jwt.io
+
+## Screenshots
+<img src="./client/src/assets/screenshot03.png" width="800">
+<img src="./client/src/assets/screenshot04.png" width="800">
+<img src="./client/src/assets/screenshot01.png" width="800">
+<img src="./client/src/assets/screenshot02.png" width="800">
