@@ -42,4 +42,12 @@ export class AuthenticationService {
         this.token = null;
         localStorage.removeItem('currentUser');
     }
+
+    resetPassword(email: string): Promise<boolean> {
+        return Promise.resolve(true);
+    }
+
+    registerAccount(email: string, password: string): Promise<boolean> {
+        return Promise.resolve(true);
+    }
 }

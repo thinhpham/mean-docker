@@ -66,7 +66,7 @@ docker-compose up -d --no-deps --build <service_name>
 - https://jwt.io
 
 ## Screenshots
-<img src="./client/src/assets/screenshot03.png" width="800">
-<img src="./client/src/assets/screenshot04.png" width="800">
-<img src="./client/src/assets/screenshot01.png" width="800">
-<img src="./client/src/assets/screenshot02.png" width="800">
+<img src="./client/src/assets/img/screenshot03.png" width="800">
+<img src="./client/src/assets/img/screenshot04.png" width="800">
+<img src="./client/src/assets/img/screenshot01.png" width="800">
+<img src="./client/src/assets/img/screenshot02.png" width="800">

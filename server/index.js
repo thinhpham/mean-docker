@@ -6,12 +6,16 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 
-// Get config settings
+// Get config settings from .env file
+const dotenv = require('dotenv');
+dotenv.load();
+
+// Get config settings from config file
 const config = require('./config');
 
 // Connect to database
 mongoose.Promise = global.Promise;
-mongoose.connect(config.database);
+mongoose.connect(process.env.database || config.database);
 
 // Create app
 const app = express();
@@ -41,7 +45,7 @@ app.use(function (req, res, next) {
 app.use(require('./controllers'));
 
 // Get port from environment and store in Express.
-const port = process.env.PORT || config.serverPort;
+const port = process.env.serverPort || config.serverPort;
 app.set('port', port);
 
 // Create HTTP server.

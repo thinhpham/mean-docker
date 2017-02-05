@@ -7,6 +7,8 @@ import { HeroesComponent } from './feature/hero/heroes.component';
 import { HeroDetailComponent } from './feature/hero/hero-detail.component';
 import { HomeComponent } from './feature/home/home.component';
 import { LoginComponent } from './core/login/login.component';
+import { RegisterComponent } from './core/register/register.component';
+import { ResetPasswordComponent } from './core/reset-password/reset-password.component';
 import { WikipediaSearchComponent } from './feature/wikipedia/wikipedia-search.component';
 
 const routes: Routes = [
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'lazy', loadChildren: './feature/lazy/lazy.module#LazyModule', canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'settings', loadChildren: './feature/settings/settings.module#SettingsModule', canActivate: [AuthGuard] },
+  { path: 'register', component: RegisterComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'wikipedia', component: WikipediaSearchComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
