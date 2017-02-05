@@ -6,7 +6,7 @@ import { DashboardComponent } from './feature/hero/dashboard.component';
 import { HeroesComponent } from './feature/hero/heroes.component';
 import { HeroDetailComponent } from './feature/hero/hero-detail.component';
 import { HomeComponent } from './feature/home/home.component';
-import { LoginComponent } from './feature/login/login.component';
+import { LoginComponent } from './core/login/login.component';
 import { WikipediaSearchComponent } from './feature/wikipedia/wikipedia-search.component';
 
 const routes: Routes = [

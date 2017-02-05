@@ -1,5 +1,6 @@
 export class Profile {
     _id: string;
+    userId: string;
     phone: string;
     address: string;
     city: string;

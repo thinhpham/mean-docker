@@ -10,7 +10,6 @@ import { AuthenticationService } from '../../core/authentication.service';
 })
 export class LoginComponent implements OnInit {
     user: any = {};
-    loading = false;
     error = '';
 
     constructor(private router: Router, private authenticationService: AuthenticationService) { }
@@ -20,7 +19,6 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        this.loading = true;
         this.authenticationService
             .login(this.user.email, this.user.password)
             .then(response => {
@@ -28,7 +26,6 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(['/dashboard']);
                 } else {
                     this.error = 'Username or password is incorrect';
-                    this.loading = false;
                 }
             });
     }

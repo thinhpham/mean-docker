@@ -9,12 +9,11 @@ import { NotificationComponent } from './notification.component';
 import { ProfileComponent } from './profile.component';
 import { SecurityComponent } from './security.component';
 
-import { ProfileService } from './profile.service';
-import { UserService } from './user.service';
+import { SettingsService } from './settings.service';
 
 @NgModule({
     imports: [ CommonModule, FormsModule, routing],
     declarations: [ SettingsComponent, NotificationComponent, ProfileComponent, SecurityComponent ],
-    providers: [ ProfileService, UserService ]
+    providers: [ SettingsService ]
 })
 export class SettingsModule { }

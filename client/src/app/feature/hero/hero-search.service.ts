@@ -8,11 +8,12 @@ import { APP_CONFIG } from '../../app.config';
 import { Hero } from '../../models/hero';
 import { AuthenticationService } from '../../core/authentication.service';
 
+import { Utils } from '../../shared/utils';
+
 @Injectable()
 export class HeroSearchService {
   private serviceUrl = `${this.config.apiEndpoint}/heroes`;
-  private headers = new Headers({ 'Content-Type': 'application/json', 'X-Access-Token': this.authenticationService.token });
-  private options = new RequestOptions({ headers: this.headers });
+  private options = Utils.createRequestOptions(this.authenticationService.token);
 
   constructor( @Inject(APP_CONFIG) private config: IAppConfig, private http: Http, private authenticationService: AuthenticationService) { }
 

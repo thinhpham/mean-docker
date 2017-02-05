@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
-module.exports = mongoose.model('Hero', new Schema({ 
-    name: String,
+var heroSchema = new mongoose.Schema({ 
+    name: { type: String, required: true, unique: true },
     age: Number,
     createdBy: String,
-    createdOn: Date,
+    createdOn: { type: Date, default: Date.now },
     updatedBy: String,
-    updatedOn: Date
-}));
+    updatedOn: { type: Date, default: Date.now }
+});
+
+module.exports = mongoose.model('Hero', heroSchema);

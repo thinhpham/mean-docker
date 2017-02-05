@@ -4,7 +4,12 @@ const router = express.Router();
 const Hero = require('../models/hero');
 
 router.get('/', (req, res) => {
-    if (req.query.name) {
+    if (req.query.id) {
+        Hero.findById(req.query.id, (error, heroes) => {
+            if (error) res.status(500).send(error);
+            res.status(200).json(heroes);
+        });
+    } else if (req.query.name) {
         Hero.find({name: new RegExp(req.query.name, "i")}, (error, heroes) => {
             if (error) res.status(500).send(error);
             res.status(200).json(heroes);
@@ -29,6 +34,10 @@ router.post('/', (req, res) => {
     if (req.body.name) hero.name = req.body.name;
     if (req.body.age) hero.age = req.body.age;
 
+    let date = new Date();
+    hero.createdOn = date;
+    hero.updatedOn = date;
+
     hero.save((error, newHero) => {
         if (error) res.status(500).send(error);
         res.status(201).json(newHero);
@@ -36,28 +45,24 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    var id = req.params.id;
-    var body = req.body;
-
-    Hero.findByIdAndUpdate(id, body, (error, hero) => {
+    Hero.findById(req.params.id, (error, hero) => {
         if (error) res.status(500).send(error);
 
-        if (!hero) {
-            return res.status(404).json({
-                message: 'Hero with id ' + id + ' can not be found.'
-            });
-        }
+        if (req.body.name) hero.name = req.body.name;
+        if (req.body.age) hero.age = req.body.age;
+        hero.updatedOn = new Date();
 
-        res.json(hero);
+        hero.save((error, newHero) => {
+            if (error) res.status(500).send(error);
+            res.status(201).json(newHero);
+        });
     });
 });
 
 router.delete('/:id', (req, res) => {
     Hero.findByIdAndRemove(req.params.id, (error, hero) => {
         if (error) res.status(500).send(error);
-        res.status(201).json({
-            message: 'Hero deleted successfully'
-        });
+        res.status(201).json({ message: 'Hero deleted successfully' });
     });
 });
 

@@ -16,7 +16,6 @@ import { SharedModule } from './shared/shared.module';
 import { APP_CONFIG, AppConfig } from './app.config';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './feature/home/home.component';
-import { LoginComponent } from './feature/login/login.component';
 
 // Import application services that don't belong in any module
 import { AuthGuard } from './core/guards/auth.guard';
@@ -33,8 +32,7 @@ import { AuthGuard } from './core/guards/auth.guard';
   ],
   declarations: [
     AppComponent,
-    HomeComponent,
-    LoginComponent
+    HomeComponent
   ],
   providers: [
     { provide: APP_CONFIG, useValue: AppConfig },

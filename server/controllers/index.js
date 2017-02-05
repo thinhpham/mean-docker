@@ -16,8 +16,8 @@ router.use(function (req, res, next) {
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
     if (token) {
-      jwt.verify(token, config.authenticationSecret, function (err, decoded) {
-        if (err) {
+      jwt.verify(token, config.authenticationSecret, function(error, decoded) {
+        if (error) {
           return res.json({
             success: false,
             message: 'Invalid authentication token provided.'
@@ -38,6 +38,8 @@ router.use(function (req, res, next) {
 
 // Protected routes
 router.use('/api/heroes', require('./hero'));
-router.use('/api/users', require('./user'));
+router.use('/api/settings/users', require('./settings/user'));
+router.use('/api/settings/profiles', require('./settings/profile'));
+router.use('/api/settings/notifications', require('./settings/notification'));
 
 module.exports = router;

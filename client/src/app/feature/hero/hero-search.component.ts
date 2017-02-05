@@ -27,7 +27,7 @@ export class HeroSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.heroes = this.searchTerms
-      .debounceTime(300)        // wait for 300ms pause in events
+      .debounceTime(400)        // wait for 300ms pause in events
       .distinctUntilChanged()   // ignore if next search term is same as previous
       .switchMap(term => term   // switch to new observable each time
         // return the http search observable

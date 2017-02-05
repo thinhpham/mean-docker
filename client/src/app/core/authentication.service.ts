@@ -30,6 +30,11 @@ export class AuthenticationService {
                 this.token = response.json().token;
                 localStorage.setItem('currentUser', JSON.stringify({ token: this.token }));
                 return true;
+            })
+            .catch(response => {
+                this.token = null;
+                localStorage.removeItem('currentUser');
+                return false;
             });
     }
 

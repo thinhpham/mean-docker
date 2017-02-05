@@ -4,15 +4,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const config = require('../config');
-const User = require('../models/user');
+const User = require('../models/settings/user');
 
 function createToken(user) {
-    var token = jwt.sign(
-        { _id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, isAdmin: user.isAdmin }, 
-        config.authenticationSecret, 
-        { expiresIn: config.authenticationExpiresIn }
-    );
-    return token;
+    return jwt.sign({ tokenId: user.id }, config.authenticationSecret, { expiresIn: config.authenticationExpiresIn });
 }
 
 function hashPassword(plainText) {
@@ -22,27 +17,23 @@ function hashPassword(plainText) {
 router.post('/', function (req, res) {
     User.findOne({ email: req.body.email }, (error, user) => {
         if (error) res.status(500).send(error);
-        var token = null;
 
-        if (user) {
-            if (req.body.password) {
-                if (user.isPasswordHashed) {
-                    if (bcrypt.compareSync(req.body.password, user.password)) {
-                        token = createToken(user);
-                        res.json({ success: true, message: 'Success', token: token });
-                    } else {
-                        res.json({ success: false, message: 'Authentication failed. User not found or incorrect password.' });
-                    }
-                } else if (req.body.password === user.password) {
-                    token = createToken(user);
-                    res.json({ success: true, message: 'Success', token: token });
-                } else {
-                    res.json({ success: false, message: 'Authentication failed. User not found or incorrect password.' });
-                }
+        var isValid = false;
+        if (user && req.body.password) {
+            if (user.isPasswordHashed && bcrypt.compareSync(req.body.password, user.password)) {
+                isValid = true;
+            } else if (req.body.password === user.password) {
+                user.password = bcrypt.hashSync(req.body.password, config.saltRound);
+                user.isPasswordHashed = true;
+                user.save();
+                isValid = true;
             }
+        }
 
+        if (isValid) {
+            res.json({ success: true, message: 'Success', token: createToken(user) });
         } else {
-            res.json({ success: false, message: 'Authentication failed. User not found or incorrect password.' });
+            res.status(401).json({ success: false, message: 'Authentication failed. User not found or incorrect password.' });
         }
     });
 });
