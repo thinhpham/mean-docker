@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -9,17 +10,24 @@ import { AuthenticationService } from '../../core/authentication.service';
     styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit {
-    error = '';
+    reset: FormGroup;
 
-    constructor(private router: Router, private location: Location, private authenticationService: AuthenticationService) { }
+    constructor(private location: Location, private fb: FormBuilder, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void { 
+        this.reset = this.fb.group({
+            email: ['', [Validators.required, Validators.minLength(2)]]
+        });
     }
 
     goBack(): void {
         this.location.back();
     }
 
-    save(): void {
+    save({ value, valid }: { value: any, valid: boolean }): void {
+        if (valid) {
+            // Call some service to reset email
+            console.log(value, valid);
+        }
     }
 }

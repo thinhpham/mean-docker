@@ -22,7 +22,6 @@ export class AuthenticationService {
 
     login(email: string, password: string): Promise<boolean> {
         const url = `${this.serviceUrl}/authenticate`;
-        const json = JSON.stringify({ email: email, password: password });
 
         return this.http.post(url, JSON.stringify({ email: email, password: password }), { headers: this.headers })
             .toPromise()

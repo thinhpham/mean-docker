@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { JwtHelper } from 'angular2-jwt';
 
 import { IAppConfig } from '../../iapp.config';
@@ -101,11 +101,32 @@ export class SettingsService {
       .catch(Utils.handleError);
   }
 
+  createUser(user: User): Promise<User> {
+    const url = `${this.serviceUrl}/settings/users`;
+
+    return this.http
+      .post(url, JSON.stringify(user), this.options)
+      .toPromise()
+      .then(response => response.json() as User)
+      .catch(Utils.handleError);
+  }
+
   updateUser(user: User): Promise<User> {
     const url = `${this.serviceUrl}/settings/users/${user._id}`;
 
     return this.http
       .put(url, JSON.stringify(user), this.options)
+      .toPromise()
+      .then(response => response.json() as User)
+      .catch(Utils.handleError);
+  }
+
+  registerNewUser(user: User): Promise<User> {
+    const url = `${this.serviceUrl}/register`;
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+
+    return this.http
+      .post(url, JSON.stringify(user), { headers: headers })
       .toPromise()
       .then(response => response.json() as User)
       .catch(Utils.handleError);

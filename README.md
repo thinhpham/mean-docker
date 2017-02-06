@@ -6,9 +6,11 @@
 - Bootstrap 3
 - Angular 2 with Webpack 2.x using angular-cli
 - Eager and lazy routing as well as child routings
-- Authentication using JSON Web Tokens (JWT)
+- template-driven and model-driven (Reactive) forms using FormBuilder and Validators
+- Authentication using JSON Web Tokens (JWT), user registration and password reset
+- Email using Amazon Simple Email Service (SES) for password reset purpose
 - Multi tabs interface for user settings
-- MongoDB data access using Mongoose
+- MongoDB data access using Mongoose and initial user account seeding using mongoimport
 - Node.js with Express
 
 ## Development without using Docker

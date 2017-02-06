@@ -10,11 +10,7 @@ function createToken(user) {
     return jwt.sign({ tokenId: user.id }, config.authenticationSecret, { expiresIn: config.authenticationExpiresIn });
 }
 
-function hashPassword(plainText) {
-    return null;
-}
-
-router.post('/', function (req, res) {
+router.post('/', (req, res) => {
     User.findOne({ email: req.body.email }, (error, user) => {
         if (error) res.status(500).send(error);
 

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { AuthenticationService } from '../../core/authentication.service';
+import { SettingsService } from '../../feature/settings/settings.service';
+import { User } from '../../models/user';
 
 @Component({
     templateUrl: './register.component.html',
@@ -10,16 +13,40 @@ import { AuthenticationService } from '../../core/authentication.service';
 })
 export class RegisterComponent implements OnInit {
     error = '';
+    success = '';
+    user: FormGroup;
 
-    constructor(private router: Router, private location: Location, private authenticationService: AuthenticationService) { }
+    constructor(
+        private settingsService: SettingsService,
+        private location: Location, 
+        private fb: FormBuilder, 
+        private authenticationService: AuthenticationService
+    ) {}
 
     ngOnInit(): void { 
+        this.user = this.fb.group({
+            firstName: [''],
+            lastName: ['',],
+            email: ['', [Validators.required, Validators.minLength(2)]],
+            password: ['', [Validators.required, Validators.minLength(2)]]
+        });
     }
 
     goBack(): void {
         this.location.back();
     }
 
-    save(): void {
+    save({ value, valid }: { value: User, valid: boolean }): void {
+        if (valid) {
+            this.settingsService.registerNewUser(value)
+                .then(user => {
+                    this.success = 'User is registered successfully. You can now login.';
+                    this.error = '';
+                })
+                .catch(error => {
+                    this.success = '';
+                    this.error = error;
+                });
+        }
     }
 }

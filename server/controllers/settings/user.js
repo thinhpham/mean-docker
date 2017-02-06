@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    if (req.body.email) {
+    if (req.body.email && req.body.password) {
         User.findOne({ email: new RegExp(req.body.email, "i") }, (error, user) => {
             if (error) res.status(500).send(error);
 
@@ -57,7 +57,7 @@ router.post('/', (req, res) => {
             }
         });
     } else {
-        res.status(500).send('Required parameter email is missing');
+        res.status(500).send('Required parameter email and/or password is missing');
     }
 });
 

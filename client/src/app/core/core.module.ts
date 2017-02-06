@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+
+import { SettingsModule } from '../feature/settings/settings.module';
 
 import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
@@ -14,7 +16,7 @@ import { LoggerService } from './logger.service';
 import { SpinnerService } from './spinner/spinner.service';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, SettingsModule],
   exports: [NavComponent, SpinnerComponent],
   declarations: [LoginComponent, NavComponent, SpinnerComponent, RegisterComponent, ResetPasswordComponent],
   providers: [AuthenticationService, LoggerService, SpinnerService]

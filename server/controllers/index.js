@@ -7,6 +7,7 @@ const config = require('../config');
 // Public routes
 router.get('/', (req, res) => { res.render('index'); });
 router.use('/api/authenticate', require('./authenticate'));
+router.use('/api/register', require('./register'));
 
 // All routes after this function are protected
 router.use(function (req, res, next) {
