@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 
 const config = require('../../config');
-const Profile = require('../../models/settings/profile');
+const Profile = require('../../models/profile');
 
 router.get('/:userId', (req, res) => {
     if (req.params.userId) {

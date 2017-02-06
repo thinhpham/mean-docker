@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 
 const config = require('../../config');
-const Notification = require('../../models/settings/notification');
+const Notification = require('../../models/notification');
 
 router.get('/:userId', (req, res) => {
     if (req.params.userId) {

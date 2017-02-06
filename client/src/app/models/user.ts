@@ -5,6 +5,7 @@ export class User {
     email: string;
     password: string;
     isPasswordHashed: boolean;
+    isConfirmed: boolean;
     isAdmin: boolean;
     lastLogin: Date;
     createdBy: string;

@@ -123,10 +123,9 @@ export class SettingsService {
 
   registerNewUser(user: User): Promise<User> {
     const url = `${this.serviceUrl}/register`;
-    const headers = new Headers({ 'Content-Type': 'application/json' });
 
     return this.http
-      .post(url, JSON.stringify(user), { headers: headers })
+      .post(url, JSON.stringify(user), this.options)
       .toPromise()
       .then(response => response.json() as User)
       .catch(Utils.handleError);

@@ -6,6 +6,7 @@ var userSchema = new mongoose.Schema({
     email: { type: String, unique: true },
     password: { type: String, required: true },
     isPasswordHashed: Boolean,
+    isConfirmed: Boolean,
     isAdmin: Boolean,
     lastLogin: Date,
     createdBy: String,

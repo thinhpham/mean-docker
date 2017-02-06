@@ -4,7 +4,8 @@ export class Utils {
     static createRequestOptions(token: string): RequestOptions {
         if (token)
             return new RequestOptions({ headers: new Headers({ 'Content-Type': 'application/json', 'X-Access-Token': token }) });
-        return null;
+        else
+            return new RequestOptions({ headers: new Headers({ 'Content-Type': 'application/json' }) });
     }
 
     static handleError(error: any): Promise<any> {

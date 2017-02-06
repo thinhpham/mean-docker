@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 
 const config = require('../../config');
-const User = require('../../models/settings/user');
+const User = require('../../models/user');
 
 router.get('/', (req, res) => {
     if (req.query.id) {
