@@ -10,6 +10,8 @@ import { AuthenticationService } from '../../core/authentication.service';
     styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit {
+    error = '';
+    success = '';
     reset: FormGroup;
 
     constructor(private location: Location, private fb: FormBuilder, private authenticationService: AuthenticationService) {}
@@ -26,8 +28,15 @@ export class ResetPasswordComponent implements OnInit {
 
     save({ value, valid }: { value: any, valid: boolean }): void {
         if (valid) {
-            // Call some service to reset email
-            console.log(value, valid);
+            this.authenticationService.resetPassword(value.email)
+                .then(user => {
+                    this.success = 'Password reset have been submitted. Please check your email to continue.';
+                    this.error = '';
+                })
+                .catch(error => {
+                    this.success = '';
+                    this.error = error;
+                });
         }
     }
 }

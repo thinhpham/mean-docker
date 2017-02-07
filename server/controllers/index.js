@@ -8,6 +8,7 @@ const config = require('../config');
 router.get('/', (req, res) => { res.render('index'); });
 router.use('/api/authenticate', require('./authenticate'));
 router.use('/api/register', require('./register'));
+router.use('/api/reset-password', require('./reset-password'));
 
 // All routes after this function are protected
 router.use(function (req, res, next) {

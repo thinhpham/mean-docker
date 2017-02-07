@@ -4,6 +4,11 @@ module.exports = {
     'authenticationSecret': 'change_your_secret_for_jwt_token_signing',
     'authenticationExpiresIn': '24h',
     'database': 'mongodb://localhost:27017/mean-docker',
+    'clientWebUrl': 'http://localhost:4200',
     'serverPort': '3000',
-    'saltRounds': 10
+    'saltRounds': 10,
+    'smtpTransportService': 'SES',
+    'smtpUsername': null,
+    'smtpPassword': null,
+    'smtpFromAddress': null
 };

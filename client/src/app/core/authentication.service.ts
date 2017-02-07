@@ -5,6 +5,8 @@ import { IAppConfig } from '../iapp.config';
 import { APP_CONFIG } from '../app.config';
 import { User } from '../models/user';
 
+import { Utils } from '../shared/utils';
+
 @Injectable()
 export class AuthenticationService {
     private headers = new Headers({ 'Content-Type': 'application/json' });
@@ -43,10 +45,11 @@ export class AuthenticationService {
     }
 
     resetPassword(email: string): Promise<boolean> {
-        return Promise.resolve(true);
-    }
+        const url = `${this.serviceUrl}/reset-password/request`;
 
-    registerAccount(email: string, password: string): Promise<boolean> {
-        return Promise.resolve(true);
+        return this.http.post(url, JSON.stringify({ email: email }), { headers: this.headers })
+            .toPromise()
+            .then(response => response.json())
+            .catch(Utils.handleError);
     }
 }
