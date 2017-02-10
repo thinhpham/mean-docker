@@ -14,7 +14,7 @@ export class ResetPasswordComponent implements OnInit {
     success = '';
     reset: FormGroup;
 
-    constructor(private location: Location, private fb: FormBuilder, private authenticationService: AuthenticationService) {}
+    constructor(private location: Location, private fb: FormBuilder, private auth: AuthenticationService) {}
 
     ngOnInit(): void { 
         this.reset = this.fb.group({
@@ -28,7 +28,7 @@ export class ResetPasswordComponent implements OnInit {
 
     save({ value, valid }: { value: any, valid: boolean }): void {
         if (valid) {
-            this.authenticationService.resetPassword(value.email)
+            this.auth.resetPassword(value.email)
                 .then(user => {
                     this.success = 'Password reset have been submitted. Please check your email to continue.';
                     this.error = '';

@@ -8,14 +8,14 @@ import { AuthenticationService } from '../../core/authentication.service';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent {
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  constructor(private auth: AuthenticationService, private router: Router) { }
 
   logout() {
-    this.authenticationService.logout();
+    this.auth.logout();
     this.router.navigate(['/login']);
   }
 
   isAuthenticated(): Boolean {
-    return (typeof this.authenticationService.token != 'undefined' && this.authenticationService.token !== null);
+    return (typeof this.auth.token != 'undefined' && this.auth.token !== null);
   }
 }

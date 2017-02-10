@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
         private settingsService: SettingsService,
         private location: Location, 
         private fb: FormBuilder, 
-        private authenticationService: AuthenticationService
+        private auth: AuthenticationService
     ) {}
 
     ngOnInit(): void { 

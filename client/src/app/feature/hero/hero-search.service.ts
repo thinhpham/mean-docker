@@ -13,9 +13,9 @@ import { Utils } from '../../shared/utils';
 @Injectable()
 export class HeroSearchService {
   private serviceUrl = `${this.config.apiEndpoint}/heroes`;
-  private options = Utils.createRequestOptions(this.authenticationService.token);
+  private options = Utils.createRequestOptions(this.auth.token);
 
-  constructor( @Inject(APP_CONFIG) private config: IAppConfig, private http: Http, private authenticationService: AuthenticationService) { }
+  constructor( @Inject(APP_CONFIG) private config: IAppConfig, private http: Http, private auth: AuthenticationService) { }
 
   search(term: string): Observable<Hero[]> {
     const url = `${this.serviceUrl}?name=${term}`;

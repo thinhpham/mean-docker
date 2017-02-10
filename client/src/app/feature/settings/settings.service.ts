@@ -14,9 +14,13 @@ import { Utils } from '../../shared/utils';
 @Injectable()
 export class SettingsService {
   private serviceUrl = `${this.config.apiEndpoint}`;
-  private options = Utils.createRequestOptions(this.authenticationService.token);
+  private options = Utils.createRequestOptions(this.auth.token);
 
-  constructor( @Inject(APP_CONFIG) private config: IAppConfig, private http: Http, private authenticationService: AuthenticationService) { }
+  constructor( 
+    @Inject(APP_CONFIG) private config: IAppConfig, 
+    private http: Http, 
+    private auth: AuthenticationService
+  ) { }
 
   getNotification(userId: string): Promise<Notification> {
     const url = `${this.serviceUrl}/settings/notifications/${userId}`;
@@ -79,8 +83,8 @@ export class SettingsService {
   }
 
   getCurrentUser(): Promise<User> {
-    if (this.authenticationService.decodedToken) {
-      return this.getUser(this.authenticationService.decodedToken.tokenId);
+    if (this.auth.decodedToken) {
+      return this.getUser(this.auth.decodedToken.tokenId);
     }
   }
 
