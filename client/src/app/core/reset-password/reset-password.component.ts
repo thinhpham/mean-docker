@@ -14,10 +14,14 @@ export class ResetPasswordComponent implements OnInit {
     success = '';
     reset: FormGroup;
 
-    constructor(private location: Location, private fb: FormBuilder, private auth: AuthenticationService) {}
+    constructor(
+        private location: Location, 
+        private builder: FormBuilder, 
+        private auth: AuthenticationService
+    ) { }
 
     ngOnInit(): void { 
-        this.reset = this.fb.group({
+        this.reset = this.builder.group({
             email: ['', [Validators.required, Validators.minLength(2)]]
         });
     }

@@ -17,14 +17,14 @@ export class RegisterComponent implements OnInit {
     user: FormGroup;
 
     constructor(
-        private settingsService: SettingsService,
         private location: Location, 
-        private fb: FormBuilder, 
+        private builder: FormBuilder, 
+        private settings: SettingsService,
         private auth: AuthenticationService
-    ) {}
+    ) { }
 
     ngOnInit(): void { 
-        this.user = this.fb.group({
+        this.user = this.builder.group({
             firstName: [''],
             lastName: ['',],
             email: ['', [Validators.required, Validators.minLength(2)]],
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
 
     save({ value, valid }: { value: User, valid: boolean }): void {
         if (valid) {
-            this.settingsService.registerNewUser(value)
+            this.settings.registerNewUser(value)
                 .then(user => {
                     this.success = 'User is registered successfully. You can now login.';
                     this.error = '';
