@@ -14,8 +14,4 @@ export class NavComponent {
     this.auth.logout();
     this.router.navigate(['/login']);
   }
-
-  isAuthenticated(): Boolean {
-    return (typeof this.auth.token != 'undefined' && this.auth.token !== null);
-  }
 }

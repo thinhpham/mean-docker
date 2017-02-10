@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 
-import { JwtHelper } from 'angular2-jwt';
+import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 
 import { IAppConfig } from '../iapp.config';
 import { APP_CONFIG } from '../app.config';
@@ -45,6 +45,10 @@ export class AuthenticationService {
         this.token = null;
         this.decodedToken = null;
         localStorage.removeItem('id_token');
+    }
+
+    loggedIn(): boolean {
+        return tokenNotExpired();
     }
 
     resetPassword(email: string): Promise<boolean> {
