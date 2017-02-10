@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { JwtHelper } from 'angular2-jwt';
 
 import { IAppConfig } from '../../iapp.config';
 import { APP_CONFIG } from '../../app.config';
@@ -80,10 +79,8 @@ export class SettingsService {
   }
 
   getCurrentUser(): Promise<User> {
-    if (this.authenticationService.token) {
-      let jwt = new JwtHelper();
-      let decoded = jwt.decodeToken(this.authenticationService.token);
-      return this.getUser(decoded.tokenId);
+    if (this.authenticationService.decodedToken) {
+      return this.getUser(this.authenticationService.decodedToken.tokenId);
     }
   }
 
