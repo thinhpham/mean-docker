@@ -64,12 +64,11 @@
     -webkit-border-radius: 50%;
     border-radius: 50%;
 }
-.need-help
+.reset-password
 {
     margin-top: 10px;
 }
-.new-account
+.register-account
 {
-    display: block;
     margin-top: 10px;
 }

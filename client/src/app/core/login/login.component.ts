@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
         this.auth
             .login(this.user.email, this.user.password)
             .then(response => {
-                if (response === true) {
+                if (response) {
                     this.router.navigate(['/dashboard']);
                 } else {
                     this.error = 'Username or password is incorrect';

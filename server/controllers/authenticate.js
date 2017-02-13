@@ -27,9 +27,9 @@ router.post('/', (req, res) => {
         }
 
         if (isValid) {
-            res.json({ success: true, message: 'Success', token: createToken(user) });
+            res.json({ message: 'Success', token: createToken(user) });
         } else {
-            res.status(401).json({ success: false, message: 'Authentication failed. User not found or incorrect password.' });
+            res.status(401).send('Authentication failed. User not found or incorrect password');
         }
     });
 });

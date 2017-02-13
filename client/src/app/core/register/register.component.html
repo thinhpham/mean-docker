@@ -3,7 +3,7 @@
         <h2>Register new account</h2>
         <div *ngIf="success" class="alert alert-success">{{success}}</div>
         <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-        <!-- model-driven (Reactive) forms -->
+        <!-- reactive forms -->
         <form novalidate (ngSubmit)="save(user)" [formGroup]="user">
             <div class="form-group">
                 <input type="text" class="form-control" formControlName="firstName" placeholder="First Name">

@@ -62,7 +62,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     Hero.findByIdAndRemove(req.params.id, (error, hero) => {
         if (error) res.status(500).send(error);
-        res.status(201).json({ message: 'Hero deleted successfully' });
+        res.status(201).json({ success: true });
     });
 });
 

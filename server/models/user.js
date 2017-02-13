@@ -9,6 +9,7 @@ var userSchema = new mongoose.Schema({
     isConfirmed: Boolean,
     isAdmin: Boolean,
     lastLogin: Date,
+    resetPasswordId: String,
     createdBy: String,
     createdOn: { type: Date, default: Date.now },
     updatedBy: String,

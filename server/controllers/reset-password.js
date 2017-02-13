@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 const randomstring = require('randomstring');
+const jade = require('jade');
 
 const User = require('../models/user');
 const config = require('../config');
@@ -18,40 +19,39 @@ router.post('/request', (req, res) => {
             if (error) res.status(500).send(error);
 
             if (user) {
+                // Get random id
                 let uniqueId = randomstring.generate({length: 39, readable: true, capitalization: 'lowercase'});
-                let bodyTemplate = `Hello,
 
-There was a recent request to change the password on your account. Click the link below to confirm this change:
+                // Update user with random id
+                user.resetPasswordId = uniqueId;
+                user.save((error, user) => {
+                    // Send email
+                    let data = {clientWebUrl: config.clientWebUrl, uniqueId: uniqueId};
+                    jade.renderFile(config.projectDir + '/templates/reset-password.jade', data, (error, html) => {
+                        let mailOptions = {
+                            from: process.env.smtpFromAddress || config.smtpFromAddress,
+                            to: req.body.email,
+                            subject: 'Password reset requested',
+                            html: html
+                        };
 
-${config.clientWebUrl}/reset-password/${uniqueId}
+                        let transporter = nodemailer.createTransport({
+                            service: process.env.smtpTransportService || config.smtpTransportService,
+                            auth: {
+                                user: process.env.smtpUsername || config.smtpUsername,
+                                pass: process.env.smtpPassword || config.smtpPassword
+                            }
+                        });
 
-Didn't ask to reset your password? If you didn't ask for your password, it's likely that another user entered your username or email address by mistake while trying to reset their password. If that's the case, you don't need to take any further action and can safely disregard this email.
-                `;
-
-                let mailOptions = {
-                    from: process.env.smtpFromAddress || config.smtpFromAddress,
-                    to: req.body.email,
-                    subject: 'Password reset requested',
-                    text: bodyTemplate
-                };
-
-                let transporter = nodemailer.createTransport({
-                    service: process.env.smtpTransportService || config.smtpTransportService,
-                    auth: {
-                        user: process.env.smtpUsername || config.smtpUsername,
-                        pass: process.env.smtpPassword || config.smtpPassword
-                    }
+                        transporter.sendMail(mailOptions, (error, info) => {
+                            if (error) res.status(500).send(error);
+                            if (info) console.log('Message %s sent: %s', info.messageId, info.response);
+                            res.status(200).json({ message: 'Password reset have been submitted. Please check your email to continue' });
+                        });
+                    });
                 });
-
-                transporter.sendMail(mailOptions, (error, info) => {
-                    if (error) res.status(500).send(error);
-
-                    console.log('Message %s sent: %s', info.messageId, info.response);
-                    res.status(200).json('Please check your email for instruction on resetting your password');
-                });
-
             } else {
-                res.status(500).send('Cannot find user');
+                res.status(500).send('Cannot find user using the email address you provided');
             }
         });
     } else {
@@ -61,27 +61,20 @@ Didn't ask to reset your password? If you didn't ask for your password, it's lik
 
 router.post('/set-new/:id', (req, res) => {
     if (req.params.id && req.body.password && req.body.confirm) {
-        User.findOne({ email: new RegExp(req.body.email, "i") }, (error, user) => {
+        User.findOne({ resetPasswordId: req.params.id }, (error, user) => {
             if (error) res.status(500).send(error);
 
             if (user) {
-                res.status(400).send('User already exists. Cannot create the same user again');
-            } else {
-                let user = new User();
-                user.firstName = req.body.firstName;
-                user.lastName = req.body.lastName;
-                user.email = req.body.email;
-                user.isAdmin = false;
-
-                if (req.body.password) {
+                if (req.body.password == req.body.confirm) {
                     user.password = bcrypt.hashSync(req.body.password, config.saltRound);
                     user.isPasswordHashed = true;
-                }
+                    user.resetPasswordId = null;
 
-                user.save((error, newUser) => {
-                    if (error) res.status(500).send(error);
-                    res.status(201).json(newUser);
-                });
+                    user.save((error, newUser) => {
+                        if (error) res.status(500).send(error);
+                        res.status(200).json({ message: 'New password set successfully. You can use it to login now' });
+                    });
+                }
             }
         });
     } else {

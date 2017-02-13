@@ -51,10 +51,19 @@ export class AuthenticationService {
         return tokenNotExpired();
     }
 
-    resetPassword(email: string): Promise<boolean> {
+    resetPassword(email: string): Promise<any> {
         const url = `${this.serviceUrl}/reset-password/request`;
 
         return this.http.post(url, JSON.stringify({ email: email }), { headers: this.headers })
+            .toPromise()
+            .then(response => response.json())
+            .catch(Utils.handleError);
+    }
+
+    setNewPassword(id: string, password: string, confirm): Promise<any> {
+        const url = `${this.serviceUrl}/reset-password/set-new/${id}`;
+
+        return this.http.post(url, JSON.stringify({ password: password, confirm: confirm }), { headers: this.headers })
             .toPromise()
             .then(response => response.json())
             .catch(Utils.handleError);

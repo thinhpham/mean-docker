@@ -14,7 +14,7 @@ import { WikipediaSearchComponent } from './feature/wikipedia/wikipedia-search.c
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'detail/:_id', component: HeroDetailComponent, canActivate: [AuthGuard] },
+  { path: 'detail/:id', component: HeroDetailComponent, canActivate: [AuthGuard] },
   { path: 'heroes', component: HeroesComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent },
   { path: 'lazy', loadChildren: './feature/lazy/lazy.module#LazyModule', canActivate: [AuthGuard] },
@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'settings', loadChildren: './feature/settings/settings.module#SettingsModule', canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'reset-password/:id', component: ResetPasswordComponent },
   { path: 'wikipedia', component: WikipediaSearchComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
