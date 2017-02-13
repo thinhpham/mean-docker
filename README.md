@@ -8,7 +8,7 @@
 - Eager and lazy routing as well as child routings
 - template-driven and model-driven (Reactive) forms using FormBuilder and Validators
 - Authentication using JSON Web Tokens (JWT), user registration and password reset
-- Email using Amazon Simple Email Service (SES) for password reset purpose
+- Email using Nodemailer that's compatible with most SMTP and cloud email providers for password reset purpose
 - Multi tabs interface for user settings
 - MongoDB data access using Mongoose and initial user account seeding using mongoimport
 - Node.js with Express
