@@ -11,13 +11,13 @@ import { Utils } from '../shared/utils';
 
 @Injectable()
 export class AuthenticationService {
-    private headers = new Headers({ 'Content-Type': 'application/json' });
     private serviceUrl = `${this.config.apiEndpoint}`;
+    private options = Utils.createRequestOptions(this.token);
     private jwtHelper = new JwtHelper();
     public token: string;
     public decodedToken: any;
 
-    constructor( @Inject(APP_CONFIG) private config: IAppConfig, private http: Http) {
+    constructor(@Inject(APP_CONFIG) private config: IAppConfig, private http: Http) {
         this.token = localStorage.getItem('id_token');
         this.decodedToken = this.token && this.jwtHelper.decodeToken(this.token);
     }
@@ -25,7 +25,7 @@ export class AuthenticationService {
     login(email: string, password: string): Promise<boolean> {
         const url = `${this.serviceUrl}/authenticate`;
 
-        return this.http.post(url, JSON.stringify({ email: email, password: password }), { headers: this.headers })
+        return this.http.post(url, JSON.stringify({ email: email, password: password }), this.options)
             .toPromise()
             .then(response => {
                 this.token = response.json().token;
@@ -54,7 +54,7 @@ export class AuthenticationService {
     resetPassword(email: string): Promise<any> {
         const url = `${this.serviceUrl}/reset-password/request`;
 
-        return this.http.post(url, JSON.stringify({ email: email }), { headers: this.headers })
+        return this.http.post(url, JSON.stringify({ email: email }), this.options)
             .toPromise()
             .then(response => response.json())
             .catch(Utils.handleError);
@@ -63,7 +63,7 @@ export class AuthenticationService {
     setNewPassword(id: string, password: string, confirm): Promise<any> {
         const url = `${this.serviceUrl}/reset-password/set-new/${id}`;
 
-        return this.http.post(url, JSON.stringify({ password: password, confirm: confirm }), { headers: this.headers })
+        return this.http.post(url, JSON.stringify({ password: password, confirm: confirm }), this.options)
             .toPromise()
             .then(response => response.json())
             .catch(Utils.handleError);
