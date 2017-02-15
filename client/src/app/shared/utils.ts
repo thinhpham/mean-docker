@@ -1,7 +1,7 @@
 import { Headers, RequestOptions } from '@angular/http';
 
 export class Utils {
-    public static createRequestOptions(token: string): RequestOptions {
+    public static createRequestOptions(token?: string): RequestOptions {
         if (token)
             return new RequestOptions({ headers: new Headers({ 'Content-Type': 'application/json', 'X-Access-Token': token }) });
         else

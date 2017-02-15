@@ -12,7 +12,7 @@ import { Utils } from '../shared/utils';
 @Injectable()
 export class AuthenticationService {
     private serviceUrl = `${this.config.apiEndpoint}`;
-    private options = Utils.createRequestOptions(this.token);
+    private options = Utils.createRequestOptions();
     private jwtHelper = new JwtHelper();
     public token: string;
     public decodedToken: any;
