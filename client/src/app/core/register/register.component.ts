@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { AuthenticationService } from '../../core/authentication.service';
-import { SettingsService } from '../../feature/settings/settings.service';
+import { SettingsService } from '../../features/settings/settings.service';
 import { User } from '../../models/user';
 
 @Component({

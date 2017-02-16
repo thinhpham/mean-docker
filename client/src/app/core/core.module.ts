@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { SettingsModule } from '../feature/settings/settings.module';
+import { SettingsModule } from '../features/settings/settings.module';
 
 import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';

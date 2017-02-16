@@ -9,13 +9,13 @@ import { HttpModule } from '@angular/http';
 // Import application own modules
 import { AppRoutingModule } from './app.routing';
 import { CoreModule } from './core/core.module';
-import { HeroModule } from './feature/hero/hero.module';
+import { HeroModule } from './features/hero/hero.module';
 import { SharedModule } from './shared/shared.module';
 
 // Import application components that don't belong in any module
 import { APP_CONFIG, AppConfig } from './app.config';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './feature/home/home.component';
+import { HomeComponent } from './features/home/home.component';
 
 // Import application services that don't belong in any module
 import { AuthGuard } from './core/guards/auth.guard';
